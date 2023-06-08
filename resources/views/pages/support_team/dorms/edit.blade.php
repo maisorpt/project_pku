@@ -1,10 +1,10 @@
 @extends('layouts.master')
-@section('page_title', 'Edit Dorm - '.$dorm->name)
+@section('page_title', 'Edit Asrama - '.$dorm->name)
 @section('content')
 
     <div class="card">
         <div class="card-header header-elements-inline">
-            <h6 class="card-title">Edit Dorm</h6>
+            <h6 class="card-title">Edit Asrama</h6>
             {!! Qs::getPanelOptions() !!}
         </div>
 
@@ -14,16 +14,16 @@
                     <form class="ajax-update" data-reload="#page-header" method="post" action="{{ route('dorms.update', $dorm->id) }}">
                         @csrf @method('PUT')
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label font-weight-semibold">Name <span class="text-danger">*</span></label>
+                            <label class="col-lg-3 col-form-label font-weight-semibold">Nama <span class="text-danger">*</span></label>
                             <div class="col-lg-9">
-                                <input name="name" value="{{ $dorm->name }}" required type="text" class="form-control" placeholder="Name of Asrama">
+                                <input name="name" value="{{ $dorm->name }}" required type="text" class="form-control" placeholder="Nama Asrama">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label font-weight-semibold">Description</label>
+                            <label class="col-lg-3 col-form-label font-weight-semibold">Deskripsi</label>
                             <div class="col-lg-9">
-                                <input name="description" value="{{ $dorm->description }}"  type="text" class="form-control" placeholder="Description of Asrama">
+                                <input name="description" value="{{ $dorm->description }}"  type="text" class="form-control" placeholder="Deskripsi Asrama">
                             </div>
                         </div>
 

@@ -29,6 +29,7 @@
                             <th>N/S</th>
                             <th>Foto</th>
                             <th>Nama</th>
+                            <th>Username</th>
                             <th>ADM_No</th>
                             <th>Kelas</th>
                             <th>Aksi</th>
@@ -40,6 +41,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td><img class="rounded-circle" style="height: 40px; width: 40px;" src="{{ $s->user->photo }}" alt="photo"></td>
                                 <td>{{ $s->user->name }}</td>
+                                <td>{{ $s->user->username }}</td>
                                 <td>{{ $s->adm_no }}</td>
                                 <td>{{ $my_class->name.' '.$s->section->name }}</td>
                                 <td class="text-center">

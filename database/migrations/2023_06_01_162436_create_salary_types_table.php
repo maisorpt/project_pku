@@ -13,9 +13,9 @@ class CreateSallaryTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sallary_types', function (Blueprint $table) {
+        Schema::create('salary_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('sallary_ammount', 100);
+            $table->string('salary_amount', 100);
         });
     }
 
@@ -26,6 +26,6 @@ class CreateSallaryTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sallary_types');
+        Schema::dropIfExists('salary_types');
     }
 }
