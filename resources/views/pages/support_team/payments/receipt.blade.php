@@ -83,7 +83,7 @@
                 </tr>
                 <tr>
                     <td class="bold">JUMLAH:</td>
-                    <td>{{ $payment->amount }}</td>
+                    <td>{{ Sv::idr_format($payment->amount) }}</td>
                     <td class="bold">KETERANGAN:</td>
                     <td>{{ $payment->description }}</td>
                 </tr>
@@ -106,8 +106,8 @@
             @foreach($receipts as $r)
                 <tr>
                     <td>{{strftime('%A, %e %B %Y', strtotime($r->created_at)) }}</td>
-                    <td>Rp. {{ $r->amt_paid }},00</td>
-                    <td>Rp. {{ $r->balance }},00</td>
+                    <td>{{ Sv::idr_format($r->amt_paid) }}</td>
+                    <td>{{ Sv::idr_format($r->balance) }}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -119,7 +119,7 @@
                 <span  style="font-size: 16px;">{{ $pr->paid ? 'STATUS PEMBAYARAN' : 'TOTAL TAGIHAN' }}</span>
             </div>
             <div  style="padding: 10px 20px; width: 200px; background-color: lightyellow;">
-                <span  style="font-size: 25px;">{{ $pr->paid ? 'LUNAS' : $pr->balance }}</span>
+                <span  style="font-size: 25px;">{{ Sv::idr_format($pr->paid ? 'LUNAS' : $pr->balance) }}</span>
             </div>
         </div>
         <div class="clear"></div>

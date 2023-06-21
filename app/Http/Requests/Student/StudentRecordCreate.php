@@ -22,7 +22,7 @@ class StudentRecordCreate extends FormRequest
     {
         return [
             'name' => 'required|string|min:6|max:150',
-            'username' => 'required|string|min:6|max:150|alpha_num',
+            'username' => 'required|string|min:6|max:50|alpha_num',
             'adm_no' => 'sometimes|nullable|alpha_num|min:3|max:150|unique:student_records',
             'gender' => 'required|string',
             'year_admitted' => 'required|string',

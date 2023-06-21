@@ -84,19 +84,27 @@
                                 <tbody>
                                     <tr>
                                         <td class="font-weight-bold">Nama</td>
+                                        @if ($sr->parent->father_name)
                                         <td>{{ $sr->parent->father_name }}</td>
+                                        @endif
                                     </tr>
                                     <tr>
                                         <td class="font-weight-bold">Nomor Telepon</td>
+                                        @if ($sr->parent->father_phone)
                                         <td>{{ $sr->parent->father_phone }}</td>
+                                        @endif
                                     </tr>
                                     <tr>
                                         <td class="font-weight-bold">Pekerjaan</td>
+                                        @if ($sr->parent->father_job)
                                         <td>{{ $sr->parent->father_job }}</td>
+                                        @endif
                                     </tr>
                                     <tr>
                                         <td class="font-weight-bold">Penghasilan</td>
+                                        @if ($sr->parent->father_salary)
                                         <td>{{ $sr->parent->father_salary }}</td>
+                                        @endif
                                     </tr>
                                 </tbody>
                             </table>
@@ -109,19 +117,27 @@
                                 <tbody>
                                     <tr>
                                         <td class="font-weight-bold">Nama</td>
+                                        @if ($sr->parent->mother_name)
                                         <td>{{ $sr->parent->mother_name }}</td>
+                                        @endif
                                     </tr>
                                     <tr>
                                         <td class="font-weight-bold">Nomor Telepon</td>
+                                        @if ($sr->parent->mother_phone)
                                         <td>{{ $sr->parent->mother_phone }}</td>
+                                        @endif
                                     </tr>
                                     <tr>
                                         <td class="font-weight-bold">Pekerjaan</td>
+                                        @if ($sr->parent->mother_job)
                                         <td>{{ $sr->parent->mother_job }}</td>
+                                        @endif
                                     </tr>
                                     <tr>
                                         <td class="font-weight-bold">Penghasilan</td>
+                                        @if ($sr->parent->mother_salary)
                                         <td>{{ $sr->parent->mother_salary }}</td>
+                                        @endif
                                     </tr>
                                 </tbody>
                             </table>

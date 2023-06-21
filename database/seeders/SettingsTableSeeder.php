@@ -17,24 +17,17 @@ class SettingsTableSeeder extends Seeder
 
         $data = [
             ['type' => 'current_session', 'description' => '2022-2023'],
-            ['type' => 'system_title', 'description' => 'CJIA'],
-            ['type' => 'system_name', 'description' => 'CJ INSPIRED ACADEMY'],
-            ['type' => 'term_ends', 'description' => '7/10/2018'],
-            ['type' => 'term_begins', 'description' => '7/10/2018'],
+            ['type' => 'system_title', 'description' => 'BQ'],
+            ['type' => 'system_name', 'description' => 'PONPES BAITUL QUR\'AN'],
+            ['type' => 'term_ends', 'description' => '7/10/2023'],
+            ['type' => 'term_begins', 'description' => '7/10/2024'],
             ['type' => 'phone', 'description' => '0123456789'],
-            ['type' => 'address', 'description' => '18B North Central Park, Behind Central Square Tourist Center'],
-            ['type' => 'system_email', 'description' => 'cjacademy@cj.com'],
+            ['type' => 'address', 'description' => 'Jati 01/06 Made, Slogohimo, Wonogiri'],
+            ['type' => 'system_email', 'description' => 'admin@baitulquranslg.sch.id'],
             ['type' => 'alt_email', 'description' => ''],
             ['type' => 'email_host', 'description' => ''],
             ['type' => 'email_pass', 'description' => ''],
-            ['type' => 'lock_exam', 'description' => 0],
-            ['type' => 'logo', 'description' => ''],
-            ['type' => 'next_term_fees_j', 'description' => '20000'],
-            ['type' => 'next_term_fees_pn', 'description' => '25000'],
-            ['type' => 'next_term_fees_p', 'description' => '25000'],
-            ['type' => 'next_term_fees_n', 'description' => '25600'],
-            ['type' => 'next_term_fees_s', 'description' => '15600'],
-            ['type' => 'next_term_fees_c', 'description' => '1600'],
+            ['type' => 'logo', 'description' => '']
         ];
 
         DB::table('settings')->insert($data);

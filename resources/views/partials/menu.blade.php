@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="media-body">
-                        <div class="media-title font-weight-semibold">{{ Auth::user()->name }}</div>
+                        <div class="media-title font-weight-semibold text-break" >{{ Auth::user()->name }}</div>
                         <div class="font-size-xs opacity-50">
                             <i class="icon-user font-size-sm"></i> &nbsp;{{ ucwords(str_replace('_', ' ', Auth::user()->user_type)) }}
                         </div>
@@ -68,6 +68,20 @@
                                     <li class="nav-item"><a href="{{ route('payments.create') }}" class="nav-link {{ Route::is('payments.create') ? 'active' : '' }}">Buat Pembayaran</a></li>
                                     <li class="nav-item"><a href="{{ route('payments.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['payments.index', 'payments.edit', 'payments.show']) ? 'active' : '' }}">Kelola Pembayaran</a></li>
                                     <li class="nav-item"><a href="{{ route('payments.manage') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['payments.manage', 'payments.invoice', 'payments.receipts']) ? 'active' : '' }}">Pembayaran</a></li>
+
+                                </ul>
+
+                            </li>
+                            
+                            {{--Savings--}}
+                            <li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['savings.index', 'savings.create', 'savings.edit', 'savings.show', 'savings.invoice']) ? 'nav-item-expanded' : '' }}">
+
+                                <a href="#" class="nav-link {{ in_array(Route::currentRouteName(), ['savings.index', 'savings.edit', 'savings.create', 'savings.show', 'savings.invoice']) ? 'active' : '' }}">Tabungan</a>
+
+                                <ul class="nav nav-group-sub">
+                                    <li class="nav-item"><a href="{{ route('savings.index') }}" class="nav-link {{ Route::is('savings.index') ? 'active' : '' }}">Data Saldo</a></li>
+                                    <li class="nav-item"><a href="{{ route('savings.show', ['saving' => 'transactions']) }}" class="nav-link {{ in_array(Route::currentRouteName(), ['savings.show']) ? 'active' : '' }}">Data Transaksi</a></li>
+                                    {{-- <li class="nav-item"><a href="{{ route('savings.manage') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['savings.manage', 'savings.invoice', 'savings.receipts']) ? 'active' : '' }}">Pembayaran</a></li> --}}
 
                                 </ul>
 
@@ -140,14 +154,27 @@
                     <li class="nav-item">
                         <a href="{{ route('sections.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['sections.index','sections.edit',]) ? 'active' : '' }}"><i class="icon-fence"></i> <span>Kelas</span></a>
                     </li>
-                 @endif   
+                 @endif
+
+                 @if(Qs::userIsStudent())
+                 <li class="nav-item">
+                     <a href="{{ route('savings.show', Qs::hash(Auth::user()->student_record->id)) }}" class="nav-link {{ (Route::is('savings.show')) ? 'active' : '' }}">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>Tabungan</span>
+                    </a>
+                 </li>
+                @endif
+             
 
 
                 @include('pages.'.Qs::getUserType().'.menu')
 
-                {{--Manage Account--}}
+                {{-- Manage Account --}}
                 <li class="nav-item">
-                    <a href="{{ route('my_account') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['my_account']) ? 'active' : '' }}"><i class="icon-user"></i> <span>Pengaturan Akun</span></a>
+                    <a href="{{ route('my_account') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['my_account']) ? 'active' : '' }}">
+                        <i class="icon-user"></i>
+                        <span>Pengaturan Akun</span>
+                    </a>
                 </li>
 
                 </ul>

@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use setlocale;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +16,11 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         setlocale(LC_ALL, 'IND');
+
+        Blade::directive('idr_format', function ($expression) {
+            return "<?php echo 'Rp. ' . number_format($expression, 0, ',', '.'); ?>";
+        });
+        
     }
 
     /**

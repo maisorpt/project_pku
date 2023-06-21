@@ -17,7 +17,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Nama Lengkap: <span class="text-danger">*</span></label>
+                            <label>Nama Lengkap: <span class="text-danger">*</span><span class="text-muted">(Min: 6 huruf)</span></label>
                             <input value="{{ $sr->user->name }}" required type="text" name="name"
                                 placeholder="Nama Lengkap" class="form-control">
                         </div>
@@ -25,7 +25,7 @@
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>Username: <span class="text-danger">*</span></label>
+                            <label>Username: <span class="text-danger">*</span><span class="text-muted">(Min: 6 huruf)</span></label>
                             <input value="{{ $sr->user->username }}" type="text" required name="username"
                                 class="form-control" placeholder="Username">
                         </div>
@@ -68,7 +68,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Alamat: <span class="text-danger">*</span></label>
+                            <label>Alamat: <span class="text-danger">*</span><span class="text-muted">(Min: 6 huruf)</span></label>
                             <input value="{{ $sr->user->address }}" class="form-control" placeholder="Alamat" name="address"
                                 type="text" required>
                         </div>

@@ -38,13 +38,6 @@
                                 placeholder="Username">
                         </div>
                     </div>
-
-                    {{-- <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="password">Password Baru: </label>
-                            <input id="password" value="{{ old('password') }}" type="password" name="password" class="form-control"  placeholder="Password">
-                        </div>
-                    </div> --}}
                 </div>
 
                 <div class="row">
@@ -134,7 +127,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <label for="subdis_id">Kelurahan:</label>
+                        <label for="subdis_id">Kelurahan / Desa:</label>
                         <select  data-placeholder="Pilih" class="select-search form-control" name="subdis_id"
                             id="subdis_id">
                             <option value=""></option>

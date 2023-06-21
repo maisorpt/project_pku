@@ -41,7 +41,7 @@
 
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Nama Lengkap: <span class="text-danger">*</span></label>
+                                        <label>Nama Lengkap: <span class="text-danger">*</span><span class="text-muted">(Min: 6 karakter)</span></label>
                                         <input value="{{ old('name') }}" required type="text" name="name"
                                             placeholder="Nama Lengkap" class="form-control">
                                     </div>
@@ -49,7 +49,7 @@
             
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label>Username: <span class="text-danger">*</span></label>
+                                        <label>Username: <span class="text-danger">*</span><span class="text-muted">(Min: 6 karakter Max: 50 karakter)</span></label>
                                         <input value="{{ old('username') }}" type="text" required name="username" class="form-control"
                                             placeholder="Username">
                                     </div>
@@ -57,7 +57,7 @@
 
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="password">Password: </label>
+                                        <label for="password">Password: <span class="text-muted">(Min: 6 karakter Max: 50 karakter)</span></label>
                                         <input id="password" type="password" name="password" class="form-control"  placeholder="Password">
                                     </div>
                                 </div>
@@ -94,7 +94,7 @@
             
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label>Tempat Lahir: <span class="text-danger">*</span></label>
+                                        <label>Tempat Lahir: <span class="text-danger">*</span>(Min: 6 karakter Max: 120 karakter)</label>
                                         <input value="{{ old('pob') }}" type="text" required name="pob" class="form-control"
                                             placeholder="Tempat Lahir">
                                     </div>
@@ -102,7 +102,7 @@
 
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label>Nomor Telepon: <span class="text-danger">*</span></label>
+                                        <label>Nomor Telepon: <span class="text-danger">*</span><span class="text-muted">(Min: 6 karakter Max: 20 karakter)</span></label>
                                         <input value="{{ old('phone') }}" type="text" required name="phone" class="form-control"
                                             placeholder="Nomor Telepon">
                                     </div>
@@ -157,7 +157,7 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Alamat: <span class="text-danger">*</span></label>
+                                        <label>Alamat: <span class="text-muted">(Min: 6 karakter Max: 120 karakter)</span><span class="text-danger">*</span></label>
                                         <input value="{{ old('address') }}" class="form-control" placeholder="Alamat" name="address"
                                             type="text" required>
                                     </div>

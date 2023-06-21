@@ -115,6 +115,22 @@ class Qs
 
     }
 
+    public static function getSavingtData($remove = [])
+    {
+        $data = ['balance'];
+
+        return $remove ? array_values(array_diff($data, $remove)) : $data;
+
+    }
+
+    public static function getTransactionData($remove = [])
+    {
+        $data = ['amount', 'transaction_type', 'note'];
+
+        return $remove ? array_values(array_diff($data, $remove)) : $data;
+
+    }
+
     public static function decodeHash($str, $toString = true)
     {
         $date = date('dMY').'CJ';
@@ -319,6 +335,12 @@ class Qs
         return $arr ? response()->json($arr) : response()->json(['ok' => $ok, 'msg' => $msg]);
     }
 
+    public static function jsonMe($msg, $ok = true, $arr = [])
+{
+    $arr['color'] = 'red';
+    return $arr ? response()->json($arr) : response()->json(['ok' => $ok, 'msg' => $msg]);
+}
+
     public static function jsonStoreOk()
     {
         return self::json(__('msg.store_ok'));
@@ -327,6 +349,16 @@ class Qs
     public static function jsonUpdateOk()
     {
         return self::json(__('msg.update_ok'));
+    }
+
+    public static function jsonTrasanctionSucces()
+    {
+        return self::json(__('Transaksi Berhasil'));
+    }
+
+    public static function jsonLackBalance()
+    {
+        return self::json(__('Saldo Kurang'), false);
     }
 
     public static function storeOk($routeName)

@@ -13,10 +13,10 @@ class StudentSaving extends Model
 
     public function student()
     {
-        return $this->belongsTo(StudentRecord::class);
+        return $this->belongsTo(StudentRecord::class, 'student_id', 'id');
     }
 
-    public function transactions()
+    public function transaction()
     {
         return $this->hasMany(SavingTransaction::class);
     }

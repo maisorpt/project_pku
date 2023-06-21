@@ -69,11 +69,11 @@ class PaymentController extends Controller
     public function invoice($st_id, $year = NULL)
     {
         if(!$st_id) {return Qs::goWithDanger();}
-
         $inv = $year ? $this->pay->getAllMyPR($st_id, $year) : $this->pay->getAllMyPR($st_id);
 
         $d['sr'] = $this->student->findByUserId($st_id)->first();
         $pr = $inv->get();
+        
         $d['uncleared'] = $pr->where('paid', 0);
         $d['cleared'] = $pr->where('paid', 1);
 
@@ -136,15 +136,17 @@ class PaymentController extends Controller
             'amt_paid' => 'required|numeric'
         ], [], ['amt_paid' => 'Amount Paid']);
 
+        $amount_paid = str_replace('.', '', $req->amt_paid);
         $pr = $this->pay->findRecord($pr_id);
         $payment = $this->pay->find($pr->payment_id);
-        $d['amt_paid'] = $amt_p = $pr->amt_paid + $req->amt_paid;
+        $d['amt_paid'] = $amt_p = $pr->amt_paid + $amount_paid;
         $d['balance'] = $bal = $payment->amount - $amt_p;
         $d['paid'] = $bal < 1 ? 1 : 0;
 
+        
         $this->pay->updateRecord($pr_id, $d);
 
-        $d2['amt_paid'] = $req->amt_paid;
+        $d2['amt_paid'] = $amount_paid;
         $d2['balance'] = $bal;
         $d2['pr_id'] = $pr_id;
         $d2['year'] = $this->year;
@@ -203,6 +205,7 @@ class PaymentController extends Controller
     {
         $data = $req->all();
         $data['year'] = $this->year;
+        $data['amount'] = str_replace('.', '', $req->amount);
         $data['ref_no'] = Pay::genRefCode();
         $this->pay->create($data);
 

@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Nama Lengkap: <span class="text-danger">*</span></label>
+                            <label>Nama Lengkap: <span class="text-muted">(Min: 6 huruf)</span><span class="text-danger">*</span></label>
                             <input value="{{ old('name') }}" required type="text" name="name"
                                 placeholder="Nama Lengkap" class="form-control">
                         </div>
@@ -24,7 +24,7 @@
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>Username: <span class="text-danger">*</span></label>
+                            <label>Username: <span class="text-muted">(Min: 6 karakter Max: 50 karakter)</span><span class="text-danger">*</span></label>
                             <input value="{{ old('username') }}" type="text" required name="username" class="form-control"
                                 placeholder="Username">
                         </div>
@@ -65,7 +65,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Alamat: <span class="text-danger">*</span></label>
+                            <label>Alamat: <span class="text-muted">(Min: 6 karakter Max: 120 karakter)</span><span class="text-danger">*</span></label>
                             <input value="{{ old('address') }}" class="form-control" placeholder="Alamat" name="address"
                                 type="text" required>
                         </div>
@@ -207,7 +207,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Nama Ayah: <span class="text-muted">(Cth: Cahyadi)</span></label>
+                            <label>Nama Ayah:</label>
                             <input value="{{ old('father_name') }}" type="text" name="father_name"
                                 placeholder="Nama Ayah" class="form-control">
                         </div>

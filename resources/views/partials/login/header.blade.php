@@ -1,6 +1,7 @@
 <!-- Main navbar -->
 <div class="navbar navbar-expand-md navbar-dark">
     <div class="mt-2 mr-5">
+        <span><img src="{{ asset('global_assets/images/favicon.png') }}" alt="Logo Baitul Qur\'an" style="width: 50px; margin-right:5px;"></span>
         <a href="{{ route('dashboard') }}" class="d-inline-block">
             <h4 class="text-bold text-white">{{ Qs::getSystemName() }}</h4>
         </a>
@@ -18,20 +19,6 @@
                 <a href="{{ route('home') }}" class="navbar-nav-link">
                     <i class="icon-home"></i>
                     <span class="d-md-none ml-2">Home</span>
-                </a>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a href="{{ route('login') }}" class="navbar-nav-link">
-                    <i class="icon-user-tie"></i>
-                    <span class="d-md-none ml-2">My Account</span>
-                </a>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a href="#" class="navbar-nav-link">
-                    <i class="icon-cog3"></i>
-                    <span class="d-md-none ml-2">Options</span>
                 </a>
             </li>
         </ul>

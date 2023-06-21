@@ -56,29 +56,33 @@ Route::group(['middleware' => 'auth'], function () {
             Route::delete('reset_record/{id}', 'PaymentController@reset_record')->name('payments.reset_record');
             Route::post('pay_now/{id}', 'PaymentController@pay_now')->name('payments.pay_now');
         });
+        
+            /************************ Savings ****************************/
+
+    Route::group(['prefix' => 'savings'], function(){
+        Route::get('transactions', 'StudentSavingController@transactions')->name('savings.transactions');
+        Route::post('transaction/{id}', 'StudentSavingController@transaction')->name('savings.transaction');
+    });
 
         Route::resource('students', 'StudentRecordController');
         Route::resource('users', 'UserController');
         Route::resource('classes', 'MyClassController');
         Route::resource('sections', 'SectionController');
-        Route::resource('subjects', 'SubjectController');
-        Route::resource('grades', 'GradeController');
-        Route::resource('exams', 'ExamController');
         Route::resource('dorms', 'DormController');
         Route::resource('payments', 'PaymentController');
-
+        Route::resource('savings', 'StudentSavingController');
+    
     });
 
     /************************ AJAX ****************************/
     Route::group(['prefix' => 'ajax'], function() {
-        Route::get('get_lga/{state_id}', 'AjaxController@get_lga')->name('get_lga');
         Route::get('get_city/{prov_id}', 'AjaxController@get_city')->name('get_city');
         Route::get('get_district/{city_id}', 'AjaxController@get_district')->name('get_district');
         Route::get('get_subdistrict/{district_id}', 'AjaxController@get_subdistrict')->name('get_subdistrict');
         Route::get('get_class_sections/{class_id}', 'AjaxController@get_class_sections')->name('get_class_sections');
         Route::get('get_class_subjects/{class_id}', 'AjaxController@get_class_subjects')->name('get_class_subjects');
     });
-
+    
 });
 
 /************************ SUPER ADMIN ****************************/

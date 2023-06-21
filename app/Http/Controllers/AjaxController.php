@@ -30,9 +30,6 @@ class AjaxController extends Controller
 
     public function get_city($prov_id)
     {
-//        $state_id = Qs::decodeHash($state_id);
-//        return ['id' => Qs::hash($q->id), 'name' => $q->name];
-
         $cities = $this->loc->getCities($prov_id);
         return $cities = $cities->map(function($q){
             return ['id' => $q->city_id, 'city_name' => $q->city_name];
@@ -41,9 +38,6 @@ class AjaxController extends Controller
 
     public function get_district($city_id)
     {
-//        $state_id = Qs::decodeHash($state_id);
-//        return ['id' => Qs::hash($q->id), 'name' => $q->name];
-
         $district = $this->loc->getDistricts($city_id);
         return $district = $district->map(function($q){
             return ['dis_id' => $q->dis_id, 'dis_name' => $q->dis_name];
@@ -52,9 +46,6 @@ class AjaxController extends Controller
 
     public function get_subdistrict($district_id)
     {
-//        $state_id = Qs::decodeHash($state_id);
-//        return ['id' => Qs::hash($q->id), 'name' => $q->name];
-
         $subdistrict = $this->loc->getSubDistricts($district_id);
         return $subdistrict = $subdistrict->map(function($q){
             return ['subdis_id' => $q->subdis_id, 'subdis_name' => $q->subdis_name];

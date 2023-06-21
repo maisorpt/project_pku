@@ -38,4 +38,11 @@ class StudentRecord extends Eloquent
     {
         return $this->belongsTo(Dorm::class);
     }
+
+    public function transactions()
+    {
+        return $this->hasMany(SavingTransaction::class, 'student_id');
+    }
+
+    
 }

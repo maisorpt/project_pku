@@ -27,9 +27,9 @@
                                     <tr>
                                         <td class="font-weight-bold">ADM_NO</td>
                                         <td>
-                                            @if($user->staff[0]['code'])
-                                            {{ $user->staff[0]['code']}}
-                                            @endif
+                                            {{-- @if($user->staff->code)
+                                            {{ $user->staff->code}}
+                                            @endif --}}
                                         </td>
                                     </tr>
                                     <tr>

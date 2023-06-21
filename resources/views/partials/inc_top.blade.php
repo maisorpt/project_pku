@@ -15,6 +15,7 @@
 
 {{-- Custom App CSS--}}
 <link href=" {{ asset('assets/css/qs.css') }}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href=" {{mix ('css/style.css')}}">
 
 {{--   Core JS files --}}
     <script src="{{ asset('global_assets/js/main/jquery.min.js') }} "></script>

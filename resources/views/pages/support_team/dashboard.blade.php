@@ -3,53 +3,70 @@
 @section('content')
 
     @if(Qs::userIsTeamSA())
-       <div class="row" style="justify-content: center">
-           <div class="col-sm-6 col-xl-3">
-               <div class="card card-body bg-blue-400 has-bg-image">
-                   <div class="media">
-                       <div class="media-body">
-                           <h3 class="mb-0">{{ $users->where('user_type', 'student')->count() }}</h3>
-                           <span class="text-uppercase font-size-xs font-weight-bold">Jumlah Santri</span>
-                       </div>
-
-                       <div class="ml-3 align-self-center">
-                           <i class="icon-users4 icon-3x opacity-75"></i>
-                       </div>
-                   </div>
-               </div>
-           </div>
-
-           <div class="col-sm-6 col-xl-3">
-               <div class="card card-body bg-danger-400 has-bg-image">
-                   <div class="media">
-                       <div class="media-body">
-                           <h3 class="mb-0">{{ $users->where('user_type', 'teacher')->count() }}</h3>
-                           <span class="text-uppercase font-size-xs">Jumlah Pengajar</span>
-                       </div>
-
-                       <div class="ml-3 align-self-center">
-                           <i class="icon-users2 icon-3x opacity-75"></i>
-                       </div>
-                   </div>
-               </div>
-           </div>
-
-           <div class="col-sm-6 col-xl-3">
-               <div class="card card-body bg-success-400 has-bg-image">
-                   <div class="media">
-                       <div class="mr-3 align-self-center">
-                           <i class="icon-pointer icon-3x opacity-75"></i>
-                       </div>
-
-                       <div class="media-body text-right">
-                           <h3 class="mb-0">{{ $users->where('user_type', 'admin')->count() }}</h3>
-                           <span class="text-uppercase font-size-xs">Jumlah Admin</span>
-                       </div>
-                   </div>
-               </div>
-           </div>
-
-       </div>
+    
+       <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body d-flex flex-column bg-primary text-white">
+                        <div class="row">
+                            <div class="col">
+                                <div class="data-section">
+                                    <h3 class="mb-0">{{ $users->where('user_type', 'student')->count() }}</h3>
+                                    <span class="text-uppercase font-size-xs font-weight-bold">Jumlah Santri</span>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="icon">
+                                    <span class="icon-users4 icon-3x opacity-75"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body d-flex flex-column bg-danger text-white">
+                        <div class="row">
+                            <div class="col">
+                                <div class="data-section">
+                                    <h3 class="mb-0">{{ $users->where('user_type', 'teacher')->count() }}</h3>
+                                    <span class="text-uppercase font-size-xs">Jumlah Pengajar</span>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="icon">
+                                    <span class="icon-users2 icon-3x opacity-75"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body d-flex flex-column bg-success text-white">
+                        <div class="row">
+                            <div class="col">
+                                <div class="data-section">
+                                    <h3 class="mb-0">{{ $users->where('user_type', 'admin')->count() }}</h3>
+                                    <span class="text-uppercase font-size-xs">Jumlah Admin</span>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="icon">
+                                    <span class="icon-users4 icon-3x opacity-75"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
        @endif
 
     {{--Events Calendar Begins--}}

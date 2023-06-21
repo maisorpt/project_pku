@@ -1,24 +1,20 @@
 <script>
-    function getLGA(state_id) {
-        var url = '{{ route('get_lga', [':id']) }}';
-        url = url.replace(':id', state_id);
-        var lga = $('#lga_id');
+    $('.number-input').on('input', function() {
+        var value = $(this).val().replace(/\D/g, '');
+        var formattedValue = formatCurrency(value);
+        $(this).val(formattedValue);
+    });
 
-        $.ajax({
-            dataType: 'json',
-            url: url,
-            success: function(resp) {
-                //console.log(resp);
-                lga.empty();
-                $.each(resp, function(i, data) {
-                    lga.append($('<option>', {
-                        value: data.id,
-                        text: data.name
-                    }));
-                });
+    function formatCurrency(value) {
+        var number = parseInt(value, 10);
+        if (isNaN(number)) {
+            return '';
+        }
 
-            }
-        })
+        var formattedValue = number.toLocaleString('en-US');
+        formattedValue = formattedValue.replace(/,/g, '.');
+
+        return formattedValue;
     }
 
     function getCity(prov_id) {
@@ -36,9 +32,9 @@
                 district.empty();
                 subdistrict.empty();
                 city.append($('<option>', {
-                value: '',
-                text: ''
-            }));
+                    value: '',
+                    text: ''
+                }));
                 $.each(resp, function(i, data) {
                     city.append($('<option>', {
                         value: data.id,
@@ -63,9 +59,9 @@
                 district.empty();
                 subdistrict.empty();
                 district.append($('<option>', {
-                value: '',
-                text: ''
-            }));
+                    value: '',
+                    text: ''
+                }));
                 $.each(resp, function(i, data) {
                     district.append($('<option>', {
                         value: data.dis_id,
@@ -88,9 +84,9 @@
             success: function(resp) {
                 subdistrict.empty();
                 subdistrict.append($('<option>', {
-                value: '',
-                text: ''
-            }));
+                    value: '',
+                    text: ''
+                }));
                 $.each(resp, function(i, data) {
                     subdistrict.append($('<option>', {
                         value: data.subdis_id,
@@ -103,21 +99,21 @@
     }
 
     $('#show_student').on('click', function(e) {
-    e.preventDefault();
-    $('.nav-link').removeClass('active');
-    $(this).addClass('active');
-    $('.tab-pane').removeClass('show active');
-    $('#basic-info').addClass('show active');
-  });
+        e.preventDefault();
+        $('.nav-link').removeClass('active');
+        $(this).addClass('active');
+        $('.tab-pane').removeClass('show active');
+        $('#basic-info').addClass('show active');
+    });
 
-  // Menampilkan tab konten Data Orang Tua ketika diklik
-  $('#show_parent').on('click', function(e) {
-    e.preventDefault();
-    $('.nav-link').removeClass('active');
-    $(this).addClass('active');
-    $('.tab-pane').removeClass('show active');
-    $('#parent-info').addClass('show active');
-  });
+    // Menampilkan tab konten Data Orang Tua ketika diklik
+    $('#show_parent').on('click', function(e) {
+        e.preventDefault();
+        $('.nav-link').removeClass('active');
+        $(this).addClass('active');
+        $('.tab-pane').removeClass('show active');
+        $('#parent-info').addClass('show active');
+    });
 
     function getClassSections(class_id, destination) {
         var url = '{{ route('get_class_sections', [':id']) }}';
@@ -391,7 +387,7 @@
     function displayAjaxErr(errors) {
         $('#ajax-alert').show().html(
             ' <div class="alert alert-danger border-0 alert-dismissible" id="ajax-msg"><button type="button" class="close" data-dismiss="alert"><span>&times;</span></button></div>'
-            );
+        );
         $.each(errors, function(k, v) {
             $('#ajax-msg').append('<span><i class="icon-arrow-right5"></i> ' + v + '</span><br/>');
         });

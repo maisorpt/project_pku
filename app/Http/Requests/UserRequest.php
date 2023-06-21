@@ -22,12 +22,12 @@ class UserRequest extends FormRequest
     {
         $store =  [
             'name' => 'required|string|min:6|max:150',
-            'password' => 'nullable|string|min:3|max:50',
+            'password' => 'nullable|string|min:6|max:50',
             'user_type' => 'required',
             'gender' => 'required|string',
             'phone' => 'sometimes|nullable|string|min:6|max:20',
             'email' => 'sometimes|nullable|email|max:100|unique:users',
-            'username' => 'sometimes|nullable|min:8|max:100|unique:users',
+            'username' => 'sometimes|nullable|min:6|max:50|unique:users',
             'photo' => 'sometimes|nullable|image|mimes:jpeg,gif,png,jpg|max:2048',
             'address' => 'string|min:6|max:120',
             'prov_id' => 'required',
@@ -40,7 +40,7 @@ class UserRequest extends FormRequest
             'gender' => 'required|string',
             'phone' => 'sometimes|nullable|string|min:6|max:20',
             'email' => 'sometimes|nullable|email|max:100|unique:users',
-            'username' => 'sometimes|nullable|min:6|max:100',
+            'username' => 'sometimes|nullable|min:6|max:50',
             'photo' => 'sometimes|nullable|image|mimes:jpeg,gif,png,jpg|max:2048',
             'address' => 'string|min:6|max:120',
             'prov_id' => 'nullable',

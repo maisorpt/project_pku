@@ -6,21 +6,26 @@ use App\Helpers\Qs;
 use App\Helpers\Mk;
 use App\Http\Requests\Student\StudentRecordCreate;
 use App\Http\Requests\Student\StudentRecordUpdate;
+use App\Models\ParentRecord;
+use App\Models\SavingTransaction;
+use App\Models\StudentSaving;
 use App\Repositories\LocationRepo;
 use App\Repositories\MyClassRepo;
+use App\Repositories\SavingRepo;
 use App\Repositories\StudentRepo;
 use App\Repositories\UserRepo;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class StudentRecordController extends Controller
 {
-    protected $loc, $my_class, $user, $student;
+    protected $loc, $my_class, $user, $student, $saving;
 
-   public function __construct(LocationRepo $loc, MyClassRepo $my_class, UserRepo $user, StudentRepo $student)
+   public function __construct(LocationRepo $loc, MyClassRepo $my_class, UserRepo $user, StudentRepo $student, SavingRepo $saving)
    {
        $this->middleware('teamSA', ['only' => ['edit','update', 'reset_pass', 'create', 'store', 'graduated'] ]);
        $this->middleware('super_admin', ['only' => ['destroy',] ]);
@@ -29,6 +34,7 @@ class StudentRecordController extends Controller
         $this->my_class = $my_class;
         $this->user = $user;
         $this->student = $student;
+        $this->saving = $saving;
    }
 
     public function reset_pass($st_id)
@@ -55,8 +61,6 @@ class StudentRecordController extends Controller
        $pr = $req->only(Qs::getParentData());
 
         $ct = $this->my_class->findTypeByClass($req->my_class_id)->code;
-       /* $ct = ($ct == 'J') ? 'JSS' : $ct;
-        $ct = ($ct == 'S') ? 'SS' : $ct;*/
 
         $data['user_type'] = 'student';
         $data['name'] = ucwords($req->name);
@@ -73,19 +77,27 @@ class StudentRecordController extends Controller
             $data['photo'] = asset('storage/' . $f['path']);
         }
 
-        $user = $this->user->create($data); // Create User
-
         $adm_no = $req->adm_no;
-        $latestParentId = $this->student->getLatestParentId();
-        $newId = $latestParentId + 1;
         $sr['adm_no'] = strtoupper(Qs::getAppCode().'/'.$ct.'/'.$sr['year_admitted'].'/'.($adm_no ?: mt_rand(1000, 99999)));
-        $sr['my_parent_id'] = $newId;
-        $sr['user_id'] = $user->id;
         $sr['session'] = Qs::getSetting('current_session');
 
-        $this->student->createRecord($sr); // Create Student
+        DB::transaction(function () use ($data, $pr, $sr) {
+            // Create User
+            $user = $this->user->create($data);
         
-        $this->student->createParent($pr); // Create Parent
+            // Create Parent
+            $parent = $this->student->createParent($pr);
+        
+            // Create Student
+            $sr['user_id'] = $user->id;
+            $sr['my_parent_id'] = $parent->id;
+
+            $student = $this->student->createRecord($sr);
+        
+            // Create Saving Record
+            $ss['student_id'] = $student->id;
+            $this->saving->createRecord($ss);
+        });
         return Qs::jsonStoreOk();
     }
 
@@ -173,23 +185,30 @@ class StudentRecordController extends Controller
 
         $this->student->updateParentRecord($sr->my_parent_id ,$pr); // Update Parent
 
-        /*** If Class/Section is Changed in Same Year, Delete Marks/ExamRecord of Previous Class/Section ****/
-        Mk::deleteOldRecord($sr->user->id, $srec['my_class_id']);
-
         return Qs::jsonUpdateOk();
     }
 
     public function destroy($st_id)
     {
         $st_id = Qs::decodeHash($st_id);
-        if(!$st_id){return Qs::goWithDanger();}
+        if (!$st_id) {
+            return Qs::goWithDanger();
+        }
+    
+        $studentRecord = $this->student->getRecord(['user_id' => $st_id])->first();
 
-        $sr = $this->student->getRecord(['user_id' => $st_id])->first();
-        $path = Qs::getUploadPath('student').$sr->user->code;
-        Storage::exists($path) ? Storage::deleteDirectory($path) : false;
-        $this->user->delete($sr->user->id);
-
+        if ($studentRecord) {
+            $studentRecord->savingTransactions()->delete();
+            $studentRecord->studentSavings()->delete();
+            $studentRecord->parent()->delete();
+            $studentRecord->delete();
+        }
+    
+        // Hapus record student
+        $this->user->delete($studentRecord->user->id);
+    
         return back()->with('flash_success', __('msg.del_ok'));
     }
+    
 
 }

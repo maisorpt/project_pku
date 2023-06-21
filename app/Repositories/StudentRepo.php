@@ -53,6 +53,11 @@ class StudentRepo
         return StudentRecord::where($where)->update($data);
     }
 
+    public function getLatestStudentId()
+    {
+        return StudentRecord::max('id');
+    }
+
     public function getRecord(array $data)
     {
         return $this->activeStudents()->where($data)->with('user');
