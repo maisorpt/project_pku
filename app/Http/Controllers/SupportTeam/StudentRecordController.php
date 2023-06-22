@@ -198,8 +198,8 @@ class StudentRecordController extends Controller
         $studentRecord = $this->student->getRecord(['user_id' => $st_id])->first();
 
         if ($studentRecord) {
-            $studentRecord->savingTransactions()->delete();
-            $studentRecord->studentSavings()->delete();
+            $studentRecord->transactions()->delete();
+            $studentRecord->savings()->delete();
             $studentRecord->parent()->delete();
             $studentRecord->delete();
         }

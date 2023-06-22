@@ -44,5 +44,9 @@ class StudentRecord extends Eloquent
         return $this->hasMany(SavingTransaction::class, 'student_id');
     }
 
-    
+    public function savings()
+    {
+        return $this->hasMany(StudentSaving::class, 'student_id');
+    }
+
 }

@@ -90,12 +90,12 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
+                                    {{-- <div class="form-group row">
                                         <label for="phone" class="col-lg-3 col-form-label font-weight-semibold">Phone </label>
                                         <div class="col-lg-9">
                                             <input id="phone" value="{{ $my->staff->phone }}" name="phone"  type="text" class="form-control" >
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="form-group row">
                                         <label for="address" class="col-lg-3 col-form-label font-weight-semibold">Alamat </label>

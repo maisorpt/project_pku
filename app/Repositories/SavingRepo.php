@@ -12,6 +12,7 @@ class SavingRepo
     {
         return StudentSaving::create($data);
     }
+    
 
     public function getTransactions()
     {

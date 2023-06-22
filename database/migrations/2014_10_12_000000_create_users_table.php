@@ -25,10 +25,10 @@ class CreateUsersTable extends Migration
             $table->string('pob')->nullable();
             $table->string('gender')->nullable();
             $table->string('photo')->default(Qs::getDefaultUserImage());
-            $table->int('prov_id')->nullable();
-            $table->int('city_id')->nullable();
-            $table->int('dis_id')->nullable();
-            $table->int('subdis_id')->nullable();
+            $table->integer('prov_id')->nullable();
+            $table->integer('city_id')->nullable();
+            $table->integer('dis_id')->nullable();
+            $table->integer('subdis_id')->nullable();
             $table->string('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

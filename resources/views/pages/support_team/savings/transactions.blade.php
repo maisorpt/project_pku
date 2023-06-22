@@ -102,14 +102,10 @@
                                 @foreach ($transactions as $transaction)
                                 <tr>
                                     <td>{{ $transaction->id }}</td>
-                                    <td>{{ $transaction->student->user->name}}</td>
+                                    <td>{{ $transaction->student->user->name }}</td>
                                     <td>{{ $transaction->created_at }}</td>
                                     <td>{{ $transaction->transaction_type }}</td>
                                     <td>{{ $transaction->amount }}</td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="5">Tidak ada data transaksi yang sesuai.</td>
                                 </tr>
                             @endforeach
                             </tbody>

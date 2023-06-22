@@ -24,7 +24,6 @@ class MyAccountController extends Controller
     public function edit_profile()
     {
         $d['my'] = Auth::user();
-        dd($d['my']->staff());
         $d['cities'] = $this->loc->getCities($d['my']->prov_id);
         $d['districts'] = $this->loc->getDistricts($d['my']->city_id);
         $d['subdistricts'] = $this->loc->getSubDistricts($d['my']->dis_id);
